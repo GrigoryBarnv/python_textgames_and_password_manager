@@ -156,3 +156,6 @@ def main():
     print(f"You left with ${balance}")
 
 main()
+
+
+print(f"hello")
