@@ -117,8 +117,7 @@ def get_bet():
 
 
 
-def game():   # if we end the porogramm we can just rertun the program 
-    balance = deposit()
+def game(balance):   # returns the net result of one spin
     lines = get_number_of_lines()
     while True:    
         bet = get_bet()
@@ -138,17 +137,21 @@ def game():   # if we end the porogramm we can just rertun the program
     winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)
     print(f"You won ${winnings}")
     print(f"You won on lines: ", *winning_lines) # for printing every line 
-    return winning_lines - total_bet
+    return winnings - total_bet
     
 
 def main():
     balance = deposit()
     while True:
         print(f"Current balance is ${balance}")
-        spin = input("Press enter to spin (q to quit).")
-        if spin == "q":
+        if balance < MIN_BET:
+            print("You do not have enough money to play.")
             break
-        balance += spin()
+
+        spin = input("Press enter to spin (q to quit).")
+        if spin.lower() == "q":
+            break
+        balance += game(balance)
 
     print(f"You left with ${balance}")
 
