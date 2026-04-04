@@ -4,6 +4,7 @@ playing = input("Do you want to play?") # start typing in smth in a console
 
 text = "Tim is great!"
 
+#print text in lower
 print(text.lower())
 
 score = 0
